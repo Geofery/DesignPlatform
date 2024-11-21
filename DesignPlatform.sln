@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService.Domain", "PaymentService\PaymentService.Domain\PaymentService.Domain.csproj", "{9163D402-CD7F-448C-A194-42EF1E0A84E7}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7D6D7910-7476-4766-8325-69AA274F3D04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -112,6 +114,10 @@ Global
 		{9163D402-CD7F-448C-A194-42EF1E0A84E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9163D402-CD7F-448C-A194-42EF1E0A84E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9163D402-CD7F-448C-A194-42EF1E0A84E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D6D7910-7476-4766-8325-69AA274F3D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D6D7910-7476-4766-8325-69AA274F3D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D6D7910-7476-4766-8325-69AA274F3D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D6D7910-7476-4766-8325-69AA274F3D04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BEE59D9C-1AD8-4644-A882-6F2DFC7B321B} = {3975484A-0F1E-4C9B-B863-3A372B2AE72A}

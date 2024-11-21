@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  usermanagementservice.web:
+    image: ${DOCKER_REGISTRY-}usermanagementservice
+    build:
+      context: .
+      dockerfile: UserManagementService/UserManagementService.Web/Dockerfile
+
+  paymentservice.web:
+    image: ${DOCKER_REGISTRY-}paymentservice
+    build:
+      context: .
+      dockerfile: PaymentService/PaymentService.Web/Dockerfile
+
+
+  furniturelibraryservice.web:
+    image: ${DOCKER_REGISTRY-}furniturelibraryservice
+    build:
+      context: .
+      dockerfile: FurnitureLibraryService/FurnitureLibraryService.Web/Dockerfile
+
+
+  designrepositoryservice.web:
+    image: ${DOCKER_REGISTRY-}designrepositoryservice
+    build:
+      context: .
+      dockerfile: DesignRepositoryService/DesignRepositoryService.Web/Dockerfile
+
+
+  communicationservice.web:
+    image: ${DOCKER_REGISTRY-}communicationservice
+    build:
+      context: .
+      dockerfile: CommunicationService/CommunicationService.Web/Dockerfile
+
