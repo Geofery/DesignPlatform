@@ -3,19 +3,23 @@
 # Root directory of the project
 root_dir=$(pwd)
 
-# Define an array of microservices
-microservices=(
-  "UserManagementService/UserManagementService.Web"
-  "DesignRepositoryService/DesignRepositoryService.Web"
-  "CommunicationService/CommunicationService.Web"
-  "FurnitureLibraryService/FurnitureLibraryService.Web"
-  "PaymentService/PaymentService.Web"
+# Define an array of microservices and their ports
+declare -a microservices=(
+  "UserManagementService/UserManagementService.Web:5001"
+  "DesignRepositoryService/DesignRepositoryService.Web:5002"
+  "CommunicationService/CommunicationService.Web:5003"
+  "FurnitureLibraryService/FurnitureLibraryService.Web:5004"
+  "PaymentService/PaymentService.Web:5005"
 )
 
 # Iterate over each microservice
-for service in "${microservices[@]}"
+for entry in "${microservices[@]}"
 do
-  echo "Building and running $service..."
+  # Split the entry into service path and port
+  service=$(echo "$entry" | cut -d':' -f1)
+  port=$(echo "$entry" | cut -d':' -f2)
+
+  echo "Building and running $service on port $port..."
 
   # Navigate to the microservice directory
   service_path="$root_dir/$service"
@@ -38,12 +42,19 @@ do
       continue
     fi
 
-    # Run the project in the background
-    if dotnet run &; then
-      echo "$service is running in the background"
-    else
-      echo "Failed to run $service"
-    fi
+    # Run the project in a new terminal window
+    osascript <<EOF
+      tell application "Terminal"
+        do script "cd $service_path && dotnet run --urls=http://localhost:$port"
+      end tell
+EOF
+
+    # Wait for the service to start
+    echo "Waiting for $service to initialize..."
+    sleep 7
+
+    # Open the service in Safari
+    open -a Safari "http://localhost:$port/swagger"
 
     # Navigate back to the root directory
     cd "$root_dir"
@@ -52,4 +63,4 @@ do
   fi
 done
 
-echo "All microservices have been processed!"
+echo "All microservices have been processed and opened in new terminals and Safari!"
