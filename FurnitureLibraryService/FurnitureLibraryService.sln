@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurnitureLibraryService.Web", "FurnitureLibraryService.Web\FurnitureLibraryService.Web.csproj", "{AA8C883D-49BB-480E-915C-2CF8CDD6E4AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurnitureLibraryService.Infrastructure", "FurnitureLibraryService.Infrastructure\FurnitureLibraryService.Infrastructure.csproj", "{E316B4F4-9300-4AAB-A5D7-AA2573F02768}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurnitureLibraryService.Domain", "FurnitureLibraryService.Domain\FurnitureLibraryService.Domain.csproj", "{610BDCC9-4BA2-40BC-89E6-0C3A89F84BAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA8C883D-49BB-480E-915C-2CF8CDD6E4AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA8C883D-49BB-480E-915C-2CF8CDD6E4AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA8C883D-49BB-480E-915C-2CF8CDD6E4AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA8C883D-49BB-480E-915C-2CF8CDD6E4AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E316B4F4-9300-4AAB-A5D7-AA2573F02768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E316B4F4-9300-4AAB-A5D7-AA2573F02768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E316B4F4-9300-4AAB-A5D7-AA2573F02768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E316B4F4-9300-4AAB-A5D7-AA2573F02768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{610BDCC9-4BA2-40BC-89E6-0C3A89F84BAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{610BDCC9-4BA2-40BC-89E6-0C3A89F84BAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{610BDCC9-4BA2-40BC-89E6-0C3A89F84BAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{610BDCC9-4BA2-40BC-89E6-0C3A89F84BAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

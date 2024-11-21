@@ -1,0 +1,6 @@
+@DesignRepositoryService.Web_HostAddress = http://localhost:5262
+
+GET {{DesignRepositoryService.Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

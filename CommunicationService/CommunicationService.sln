@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunicationService.Web", "CommunicationService.Web\CommunicationService.Web.csproj", "{1F5CBF59-F70E-43BD-BDBF-302D1CC1C6B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunicationService.Infrastructure", "CommunicationService.Infrastructure\CommunicationService.Infrastructure.csproj", "{2C041CBB-A415-4054-8161-1BBBD4C5015B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunicationService.Domain", "CommunicationService.Domain\CommunicationService.Domain.csproj", "{0503167F-D929-4EAC-A35A-5B0FF0E90EF2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F5CBF59-F70E-43BD-BDBF-302D1CC1C6B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F5CBF59-F70E-43BD-BDBF-302D1CC1C6B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F5CBF59-F70E-43BD-BDBF-302D1CC1C6B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F5CBF59-F70E-43BD-BDBF-302D1CC1C6B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C041CBB-A415-4054-8161-1BBBD4C5015B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C041CBB-A415-4054-8161-1BBBD4C5015B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C041CBB-A415-4054-8161-1BBBD4C5015B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C041CBB-A415-4054-8161-1BBBD4C5015B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0503167F-D929-4EAC-A35A-5B0FF0E90EF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0503167F-D929-4EAC-A35A-5B0FF0E90EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0503167F-D929-4EAC-A35A-5B0FF0E90EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0503167F-D929-4EAC-A35A-5B0FF0E90EF2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
