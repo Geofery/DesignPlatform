@@ -1,3 +1,6 @@
+# Run all microservices
+```./build.sh ```
+
 # SqlServer
 
 To set up a SqlServer Docker container using same volume mount location as the other Docker containers described in this page, run the following command, keeping in mind that if you already have an SQL Server running on your machine, then you need to use another port number (e.g. 1439) for the Docker container:
