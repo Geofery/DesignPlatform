@@ -1,57 +1,52 @@
-﻿using System.Collections.Concurrent;
-using UserManagementService.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using UserManagementService.Application.DTOs;
 using UserManagementService.Application.Interfaces;
+using UserManagementService.Domain;
+using UserManagementService.Domain.Models;
+using UserManagementService.Infrastructure.Repositories;
 
 namespace UserManagementService.Infrastructure;
 
 public class UserService : IUserService
 {
-    // Simulated in-memory storage for users
-    private static readonly ConcurrentDictionary<string, User> _users = new();
+    private readonly UserManagementDbContext _dbContext;
 
-    public UserService()
+    public UserService(UserManagementDbContext dbContext)
     {
-        // Add a sample user for testing
-        _users.TryAdd("test@example.com", new User
-        {
-            Id = Guid.NewGuid(),
-            Email = "test@example.com",
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword("password"), // Hashed password
-            Role = "Customer"
-        });
+        _dbContext = dbContext;
     }
 
-    public async Task<User?> ValidateUserAsync(string email, string password)
+    public async Task<LoginRequest?> ValidateUserAsync(string email, string password)
     {
-        if (_users.TryGetValue(email, out var user))
+        var user = await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == email);
+        if (user != null && BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
         {
-            // Check password hash
-            if (BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
-            {
-                return await Task.FromResult(user);
-            }
+            //TODO convert.
+            return user;
         }
         return null;
     }
 
-    public async Task<User?> GetUserByIdAsync(Guid userId)
+    public async Task<UserDTO?> GetUserByIdAsync(Guid userId)
     {
-        var user = _users.Values.FirstOrDefault(u => u.Id == userId);
-        return await Task.FromResult(user);
+        var response = await _dbContext.Users.FindAsync(userId);
+        //TODO Implement convertion from user to userDTO
+        //TODO Mapper or something else.
+        return null;
     }
 
-    public async Task<bool> CreateUserAsync(User user)
+    public async Task<bool> CreateUserAsync(UserDTO user)
     {
-        if (_users.ContainsKey(user.Email))
+        // Check if a user with the same email already exists
+        if (await _dbContext.Users.AnyAsync(u => u.Email == user.Email))
         {
-            return await Task.FromResult(false); // User already exists
+            return false;
         }
 
-        // Hash password before saving
+        // Hash the password before saving
         user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
-        _users.TryAdd(user.Email, user);
-
-        return await Task.FromResult(true);
+        _dbContext.Users.Add(user);
+        await _dbContext.SaveChangesAsync();
+        return true;
     }
 }
-

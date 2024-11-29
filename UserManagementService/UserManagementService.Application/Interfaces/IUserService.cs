@@ -1,10 +1,11 @@
-﻿namespace UserManagementService.Domain
+﻿using UserManagementService.Application.DTOs;
+
+namespace UserManagementService.Application.Interfaces;
+
+public interface IUserService
 {
-    public interface IUserService
-    {
-        Task<User?> ValidateUserAsync(string email, string password);
-        Task<User?> GetUserByIdAsync(Guid userId);
-        Task<bool> CreateUserAsync(User user);
-    }
+    Task<LoginRequest?> ValidateUserAsync(string email, string password);
+    Task<UserDTO?> GetUserByIdAsync(Guid userId);
+    Task<bool> CreateUserAsync(UserDTO user);
 }
 

@@ -1,6 +1,9 @@
-﻿using UserManagementService.Domain;
+﻿using UserManagementService.Application.DTOs;
+using UserManagementService.Domain;
+
+namespace UserManagementService.Application.Interfaces;
 
 public interface ITokenService
 {
-    string GenerateToken(User user);
+    string GenerateToken(LoginRequest user);
 }

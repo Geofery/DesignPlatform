@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UserManagementService.Infrastructure;
+using UserManagementService.Application.DTOs;
+using UserManagementService.Application.Interfaces;
 
 
 namespace UserManagementService.Web
@@ -35,11 +36,11 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequest request)
     {
-        var user = new User
+        var user = new UserDTO
         {
             Id = Guid.NewGuid(),
             Email = request.Email,
-            PasswordHash = request.Password,
+            PasswordHash = request.PasswordHash,
             Role = request.Role
         };
 

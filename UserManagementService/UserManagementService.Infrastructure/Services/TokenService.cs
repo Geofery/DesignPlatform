@@ -1,11 +1,11 @@
-﻿using UserManagementService.Domain;
+﻿using UserManagementService.Application.Interfaces;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace UserManagementService.Infrastructure;
+namespace UserManagementService.Infrastructure.Services;
 
 public class TokenService : ITokenService
 {

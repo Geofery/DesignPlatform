@@ -1,4 +1,4 @@
-﻿namespace UserManagementService.Domain;
+﻿namespace UserManagementService.Domain.Models;
 
 public class User
 {
