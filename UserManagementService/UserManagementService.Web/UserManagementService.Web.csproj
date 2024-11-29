@@ -18,6 +18,13 @@
   <ItemGroup>
     <ProjectReference Include="..\UserManagementService.Infrastructure\UserManagementService.Infrastructure.csproj" />
     <ProjectReference Include="..\UserManagementService.Domain\UserManagementService.Domain.csproj" />
+    <ProjectReference Include="..\UserManagementService.Application\UserManagementService.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
 </Project>

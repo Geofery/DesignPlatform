@@ -1,6 +1,6 @@
-﻿
+﻿using System.Collections.Concurrent;
 using UserManagementService.Domain;
-using System.Collections.Concurrent;
+using UserManagementService.Application.Interfaces;
 
 namespace UserManagementService.Infrastructure;
 

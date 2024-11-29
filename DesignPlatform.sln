@@ -45,6 +45,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService.Domain", "Pa
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7D6D7910-7476-4766-8325-69AA274F3D04}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagementService.Application", "UserManagementService\UserManagementService.Application\UserManagementService.Application.csproj", "{7C0C5816-CBA9-4DF1-8D6F-050028FFE35C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{541F1F6F-2C28-4956-AF55-AC4582078A5E}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -118,6 +125,10 @@ Global
 		{7D6D7910-7476-4766-8325-69AA274F3D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D6D7910-7476-4766-8325-69AA274F3D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D6D7910-7476-4766-8325-69AA274F3D04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C0C5816-CBA9-4DF1-8D6F-050028FFE35C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C0C5816-CBA9-4DF1-8D6F-050028FFE35C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C0C5816-CBA9-4DF1-8D6F-050028FFE35C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C0C5816-CBA9-4DF1-8D6F-050028FFE35C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BEE59D9C-1AD8-4644-A882-6F2DFC7B321B} = {3975484A-0F1E-4C9B-B863-3A372B2AE72A}
@@ -135,5 +146,6 @@ Global
 		{30A089C2-6914-4566-AF51-D4B0643C85BC} = {474D76B6-73A8-4B62-B625-127163166E80}
 		{E67FDAB9-E50E-4C44-859E-58542B6D8F18} = {474D76B6-73A8-4B62-B625-127163166E80}
 		{9163D402-CD7F-448C-A194-42EF1E0A84E7} = {474D76B6-73A8-4B62-B625-127163166E80}
+		{7C0C5816-CBA9-4DF1-8D6F-050028FFE35C} = {3975484A-0F1E-4C9B-B863-3A372B2AE72A}
 	EndGlobalSection
 EndGlobal
