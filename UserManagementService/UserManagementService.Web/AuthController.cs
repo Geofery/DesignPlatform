@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UserManagementService.Domain;
 using UserManagementService.Infrastructure;
 
 
