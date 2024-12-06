@@ -1,36 +1,24 @@
-version: '3.4'
-
 services:
-  usermanagementservice.web:
-    image: ${DOCKER_REGISTRY-}usermanagementservice
-    build:
-      context: .
-      dockerfile: UserManagementService/UserManagementService.Web/Dockerfile
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"   # RabbitMQ default messaging port
+      - "15672:15672" # RabbitMQ management UI
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
 
-  paymentservice.web:
-    image: ${DOCKER_REGISTRY-}paymentservice
-    build:
-      context: .
-      dockerfile: PaymentService/PaymentService.Web/Dockerfile
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: UserManagementDb
+    volumes:
+      - mysql-data:/var/lib/mysql
 
-
-  furniturelibraryservice.web:
-    image: ${DOCKER_REGISTRY-}furniturelibraryservice
-    build:
-      context: .
-      dockerfile: FurnitureLibraryService/FurnitureLibraryService.Web/Dockerfile
-
-
-  designrepositoryservice.web:
-    image: ${DOCKER_REGISTRY-}designrepositoryservice
-    build:
-      context: .
-      dockerfile: DesignRepositoryService/DesignRepositoryService.Web/Dockerfile
-
-
-  communicationservice.web:
-    image: ${DOCKER_REGISTRY-}communicationservice
-    build:
-      context: .
-      dockerfile: CommunicationService/CommunicationService.Web/Dockerfile
-
+volumes:
+  mysql-data:

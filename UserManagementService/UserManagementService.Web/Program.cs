@@ -1,20 +1,10 @@
-using UserManagementService.Application.Interfaces;
-using UserManagementService.Infrastructure.Repositories;
-using UserManagementService.Infrastructure.Services;
-using Microsoft.EntityFrameworkCore;
-
+using UserManagementService.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container
+// Add controllers and other services
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddDbContext<UserManagementDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-
-
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -22,24 +12,23 @@ builder.Services.AddSwaggerGen(options =>
         Title = "User Management API",
         Version = "v1"
     });
-}); builder.Services.AddScoped<ITokenService, TokenService>();
+});
 
+// Configure NServiceBus using the configurator and pass the builder.Services
+var endpointInstance = await NServiceBusConfigurator.ConfigureEndpoint("UserManagementService", builder.Services);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
-// Add authentication and authorization middleware (if applicable)
-app.UseAuthentication();
-app.UseAuthorization();
-
+//app.UseHttpsRedirection();
 app.MapControllers();
 
-app.Run();
+// Ensure NServiceBus endpoint stops gracefully
+app.Lifetime.ApplicationStopping.Register(async () => await endpointInstance.Stop().ConfigureAwait(false));
+
+await app.RunAsync();

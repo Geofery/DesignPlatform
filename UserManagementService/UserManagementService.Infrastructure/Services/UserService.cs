@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UserManagementService.Application.DTOs;
 using UserManagementService.Application.Interfaces;
-using UserManagementService.Domain;
-using UserManagementService.Domain.Models;
 using UserManagementService.Infrastructure.Repositories;
+using UserManagementService.Domain.Models;
 
-namespace UserManagementService.Infrastructure;
+namespace UserManagementService.Infrastructure.Services;
 
 public class UserService : IUserService
 {
@@ -21,31 +20,44 @@ public class UserService : IUserService
         var user = await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == email);
         if (user != null && BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
         {
-            //TODO convert.
-            return user;
+            return new LoginRequest
+            {
+                Email = user.Email,
+                Password = password
+            };
         }
         return null;
     }
 
     public async Task<UserDTO?> GetUserByIdAsync(Guid userId)
     {
-        var response = await _dbContext.Users.FindAsync(userId);
-        //TODO Implement convertion from user to userDTO
-        //TODO Mapper or something else.
-        return null;
+        var user = await _dbContext.Users.FindAsync(userId);
+        if (user == null) return null;
+
+        return new UserDTO
+        {
+            Id = user.Id,
+            Email = user.Email,
+            Role = user.Role
+        };
     }
 
     public async Task<bool> CreateUserAsync(UserDTO user)
     {
-        // Check if a user with the same email already exists
         if (await _dbContext.Users.AnyAsync(u => u.Email == user.Email))
         {
             return false;
         }
 
-        // Hash the password before saving
-        user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
-        _dbContext.Users.Add(user);
+        var newUser = new User
+        {
+            Id = Guid.NewGuid(),
+            Email = user.Email,
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash),
+            Role = user.Role
+        };
+
+        _dbContext.Users.Add(newUser);
         await _dbContext.SaveChangesAsync();
         return true;
     }

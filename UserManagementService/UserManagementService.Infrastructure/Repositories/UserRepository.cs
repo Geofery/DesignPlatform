@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UserManagementService.Domain;
+using UserManagementService.Domain.Models;
 
-    namespace UserManagementService.Infrastructure.Repositories;
+namespace UserManagementService.Infrastructure.Repositories;
 
     public class UserRepository : IUserRepository
     {
@@ -32,5 +33,5 @@ using UserManagementService.Domain;
             _dbContext.Users.Add(user);
             await _dbContext.SaveChangesAsync();
         }
-    }
+}
 
