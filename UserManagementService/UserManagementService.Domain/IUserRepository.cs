@@ -1,6 +1,7 @@
 ﻿using System;
 using UserManagementService.Domain.Models;
 
+
 namespace UserManagementService.Domain;
 
     public interface IUserRepository

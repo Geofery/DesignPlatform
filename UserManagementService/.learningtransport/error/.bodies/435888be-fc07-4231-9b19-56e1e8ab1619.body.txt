@@ -1,0 +1,1 @@
+<?xml version="1.0"?><UserCreatedEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.net/Shared.Contracts"><UserId>c378468e-b0b7-435c-8735-2c1ebe25afd9</UserId><Password>string</Password><Email>new@mail.com</Email><Role>string</Role></UserCreatedEvent>

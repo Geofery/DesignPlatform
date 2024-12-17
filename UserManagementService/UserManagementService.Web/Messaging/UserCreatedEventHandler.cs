@@ -1,75 +1,48 @@
-﻿using System;
-namespace UserManagementService.Web.Messaging
-{
-    using NServiceBus;
-    using Shared.Contracts;
-
-    public class UserCreatedEventHandler : IHandleMessages<UserCreatedEvent>
-    {
-        public Task Handle(UserCreatedEvent message, IMessageHandlerContext context)
-        {
-            Console.WriteLine($"UserCreatedEvent received for UserId: {message.UserId}");
-            return Task.CompletedTask;
-        }
-    }
-}
-
-
-//TODO: IDA EKSEMPEL
-/*
- using Ida.MemberSignupApi.Domain.Messages.Commands;
-using Ida.MemberSignupApi.Domain.Messages.Messages;
-using Ida.MemberSignupApi.Domain.Models;
-using Ida.MemberSignupApi.Domain.Repositories;
+﻿
+using Microsoft.EntityFrameworkCore;
+using Shared.Contracts;
+using UserManagementService.Infrastructure.Repositories;
+using UserManagementService.Domain.Models;
 using NServiceBus;
 
-namespace Ida.MemberSignupApi.Web.Messaging.Student;
 
-public class AddStudentMembershipFeeHandler : IHandleMessages<AddStudentMembershipFee>
+namespace UserManagementService.Web.Messaging
 {
-    private readonly ILeadRepository _leadRepository;
-    private readonly IMembershipFeeRepository _membershipFeeRepository;
-
-    public AddStudentMembershipFeeHandler(IMembershipFeeRepository membershipFeeRepository,
-        ILeadRepository leadRepository)
+    public class UserCreatedEventHandler : IHandleMessages<UserCreatedEvent>
     {
-        _membershipFeeRepository = membershipFeeRepository;
-        _leadRepository = leadRepository;
-    }
+        private readonly UserRepository _userRepository;
 
-    public async Task Handle(AddStudentMembershipFee message, IMessageHandlerContext context)
-    {
-        if (message?.IdaUserNumber is null || message.LeadId is null)
+        public UserCreatedEventHandler(UserRepository userRepository)
         {
-            throw new ArgumentNullException(nameof(message));
+            _userRepository = userRepository;
         }
 
-        var lead = await _leadRepository
-            .GetAll()
-            .ContinueWith(a =>
-                a.Result.FirstOrDefault(l =>
-                    l.Config.LeadId == message.LeadId))
-            .ConfigureAwait(false) ?? throw new Exception("Lead not found");
-
-        var existingMembershipFees = await _membershipFeeRepository
-            .GetMembershipFees(message.IdaUserNumber)
-            .ConfigureAwait(false);
-
-        if (!existingMembershipFees.Any())
+        public async Task Handle(UserCreatedEvent message, IMessageHandlerContext context)
         {
-            var membershipFee = new MembershipFee
+            if (message?.Email is null || message.Email is null)
             {
-                MembershipFeeGroupName = "student",
-                StartDate = DateTime.Now,
-                IdaUserNumber = message.IdaUserNumber,
-                PaymentFrequency = PaymentFrequency.QuarterlyCharging
-            };
-            await _membershipFeeRepository.Create(message.IdaUserNumber, membershipFee).ConfigureAwait(false);
+                throw new ArgumentNullException(nameof(message));
 
-            await context
-                .Reply(new MembershipFeeAdded { LeadId = message.LeadId, Status = "" })
-                .ConfigureAwait(false);
+            }
+            Console.WriteLine($"UserCreatedEvent received for UserId: {message.UserId}");
+            /* if (await _userRepository.GetUserByEmailAsync(message.Email) is not null)
+             {
+                 throw new ArgumentNullException(nameof(message));
+
+             };*/
+
+            var newUser = new User
+            {
+                Id = Guid.NewGuid(),
+                Email = message.Email,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(message.Password),
+                Role = message.Role
+            };
+
+            Console.WriteLine($"UserCreatedEvent received for UserId: {newUser}");
+
+            //await _userRepository.AddUserAsync(newUser);
+            await Task.CompletedTask;
         }
     }
 }
- */
